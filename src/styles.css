@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: Lato, sans-serif;
+  width: 95vw;
+  height: 90vh;
+}
