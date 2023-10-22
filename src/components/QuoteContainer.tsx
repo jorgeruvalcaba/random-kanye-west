@@ -1,42 +1,48 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-import "./QuoteContainer.css";
+import './QuoteContainer.css'
 
-export default class QuoteContainer extends React.Component {
+interface State {
+  error: unknown
+  isLoaded: boolean
+  quote: string
+}
+
+export default class QuoteContainer extends React.Component<unknown, State> {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       error: null,
       isLoaded: false,
-      quote: ""
-    };
-    this.handleQuote = this.handleQuote.bind(this);
+      quote: '',
+    }
+    this.handleQuote = this.handleQuote.bind(this)
   }
 
   componentDidMount() {
-    this.handleQuote();
+    this.handleQuote()
   }
 
   handleQuote() {
-    fetch("https://api.kanye.rest/")
+    fetch('https://api.kanye.rest/')
       .then(response => response.json())
       .then(data => {
         this.setState({
-          quote: data.quote
-        });
+          quote: data.quote,
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
+        this.setState({ error })
+      })
   }
 
   render() {
-    const quote = this.state.quote;
-    const author = "Kanye West";
-    const twitterLink = `https://twitter.com/intent/tweet?text=${quote} - Kanye West`;
+    const quote = this.state.quote
+    const author = 'Kanye West'
+    const twitterLink = `https://twitter.com/intent/tweet?text=${quote} - Kanye West`
 
     return (
       <div className="QuoteContainer" id="quote-box">
@@ -65,6 +71,6 @@ export default class QuoteContainer extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
